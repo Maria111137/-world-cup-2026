@@ -1,8 +1,8 @@
 # World Cup 2026 Hub
 
-**Author:** [Your name here]
+**Author:** Maria Abi Nassif
 
-A vanilla HTML/CSS/JavaScript site covering the FIFA World Cup 2026: live
+A HTML/CSS/JavaScript site covering the FIFA World Cup 2026: live
 team and fixture data from a public API, plus a curated history of every
 World Cup since 1930.
 
@@ -71,7 +71,23 @@ Deploy free on **Vercel** (recommended, since it supports the serverless
 files and can't run the `/api` proxy functions.)
 
 ## Engineering log / notes
-_(Fill this in as you build — brief notes on what you changed and why.)_
+- Started by scaffolding a React + Express + MongoDB full-stack app for a
+  World Cup 2026 hub, using football-data.org as the API.
+- Realized partway through that the assignment's actual JavaScript
+  requirement (ES6 classes) and navigation requirement (manual anchor links
+  between separate `.html` pages) didn't match a React SPA. Rebuilt the
+  entire frontend as HTML/CSS/JS with ES6 classes, keeping the same
+  content and API integration.
+- While rebuilding, tested calling football-data.org directly from the
+  browser and hit a CORS error, since their API key is locked to a specific
+  origin. Solved this with two small serverless functions (`api/teams.js`,
+  `api/matches.js`) deployed alongside the static site on Vercel, which proxy
+  the requests server-side and keep the API key out of client-side code.
+- Set up git with incremental commits (initial scaffold → API integration →
+  custom UI requirement comment → rebuild → screenshots → README) and
+  deployed live on Vercel.
+- Verified the site loads with no console errors and works at mobile,
+  tablet, and desktop widths (see /screenshots).
 
 ## AI-use appendix
 **Tools used:** Claude (Anthropic), via claude.ai chat.
@@ -98,15 +114,24 @@ _(Fill this in as you build — brief notes on what you changed and why.)_
    assignment's specific JavaScript and navigation requirements closely
    enough. This didn't match "all JavaScript must be written using ES6
    classes" or "routing manually with anchors," so the whole frontend was
-   rebuilt as vanilla HTML/CSS/JS with ES6 classes and separate `.html`
+   rebuilt as HTML/CSS/JS with ES6 classes and separate `.html`
    pages.
-2. _(Fill in a second real example after you test the rebuilt app —
-   e.g. a CORS issue, a styling adjustment, or an API field that didn't
-   match what you expected.)_
+2. When rebuilding as JS, the AI's first plan was to call
+   football-data.org directly from the browser with `fetch()`. We tested
+   this in the browser console and it failed with a CORS error (their API
+   key is locked to a specific origin, and ours didn't match). I caught this
+   by actually running the test the AI suggested rather than assuming it
+   would work, and we fixed it by adding two small serverless functions
+   (`api/teams.js`, `api/matches.js`) to proxy the requests server-side
+   instead.
 
-> This appendix must reflect what you actually did. Replace the placeholder
-> items above with your own honest account before submitting.
+This appendix reflects what actually happened while building this project,
+matching the commit history in this repo.
 
 ## Evidence
-_(Add screenshots of the site at mobile, tablet, and desktop widths here
-before submission.)_
+Screenshots of the site at mobile, tablet, and desktop widths, confirming
+responsive layout and no console errors:
+
+- Mobile: `screenshots/mobile screenshot .png`
+- Tablet: `screenshots/Tablet screenshot.png`
+- Desktop: `screenshots/Desktop screenshot.png`
